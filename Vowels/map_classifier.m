@@ -6,7 +6,7 @@ for sample = 1:length(data.file)
         mean_estimate = table2array(class_means(vowel, :));
         cov_estimate = class_covariances(:, :, vowel);
         p = mvnpdf(data_sample, mean_estimate, cov_estimate);
-        likelihoods(:, vowel) = p;
+        likelihoods(:, vowel) = p * 1/12;
     end
     [max_likelihood, max_likelihood_index] = max(likelihoods, [], 2);
     predicted_classes(sample, :) = max_likelihood_index;
