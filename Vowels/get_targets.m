@@ -4,5 +4,5 @@ function targets = get_targets(dataset, vowel_classes)
         for i = 1:size(dataset(:,1), 1)
             targets(i) = strmatch(filenames(i, 4:5), vowel_classes);
         end
-    targets = targets
+    targets = targets;
 end

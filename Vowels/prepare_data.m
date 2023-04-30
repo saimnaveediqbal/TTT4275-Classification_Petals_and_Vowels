@@ -4,8 +4,11 @@ function [training_set, testing_set, vowel_code, talker_group_code, talker_numbe
     filenames = char(vowdata.file);
     vowel_classes = str2mat('ae','ah','aw','eh','er','ei','ih','iy','oa','oo','uh','uw');
     talker_groups = str2mat('m','w','b','g');
+    vowel_code = NaN(1, size(filenames, 1));
+    talker_group_code = NaN(1, size(filenames, 1));
+    talker_number = NaN(1, size(filenames, 1));
     %calculate positions of talkers and vowels
-    for i = 1:size(filenames)
+    for i = 1:size(filenames, 1)
         vowel_code(i) = strmatch(filenames(i, 4:5), vowel_classes);
         talker_group_code(i) = strmatch(filenames(i, 1), talker_groups);
         talker_number(i) = str2num(filenames(i, 2:3));
@@ -21,8 +24,10 @@ function [training_set, testing_set, vowel_code, talker_group_code, talker_numbe
     end
     %recalculate positions of talkers and vowels
     filenames = char(training_set.file);
-    vowel_code = []; talker_group_code = []; talker_number = [];
-    for i = 1:size(training_set(:,1))
+    vowel_code = NaN(1, size(training_set,1));
+    talker_group_code = NaN(1, size(training_set,1));
+    talker_number = NaN(1, size(training_set,1));
+    for i = 1:size(training_set,1)
         vowel_code(i) = strmatch(filenames(i, 4:5), vowel_classes);
         talker_group_code(i) = strmatch(filenames(i, 1), talker_groups);
         talker_number(i) = str2num(filenames(i, 2:3));
